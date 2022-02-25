@@ -1,8 +1,9 @@
 version: '3.8'
 services:
   db:
+    build: 
+      context: .
     container_name: pg_container
-    image: postgres
     restart: always
     environment:
       POSTGRES_USER: root

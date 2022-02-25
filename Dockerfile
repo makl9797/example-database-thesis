@@ -1,3 +1,6 @@
 FROM postgres:latest
-RUN chmod +x /pgMemento-master/extension/pgxn/build.sh
-
+RUN apt-get update && apt-get install make
+COPY /pgMemento /pgMemento
+WORKDIR /pgMemento
+RUN make install
+WORKDIR /..

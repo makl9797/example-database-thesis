@@ -24,14 +24,14 @@ SET client_min_messages TO WARNING;
 
 \echo
 \echo 'Creating pgMemento schema, tables and functions ...'
-\i pgMemento/src/SCHEMA.sql
-\i pgMemento/src/SETUP.sql
-\i pgMemento/src/LOG_UTIL.sql
-\i pgMemento/src/DDL_LOG.sql
-\i pgMemento/src/RESTORE.sql
-\i pgMemento/src/REVERT.sql
-\i pgMemento/src/SCHEMA_MANAGEMENT.sql
-\i pgMemento/src/CTL.sql
+\i src/SCHEMA.sql
+\i src/SETUP.sql
+\i src/LOG_UTIL.sql
+\i src/DDL_LOG.sql
+\i src/RESTORE.sql
+\i src/REVERT.sql
+\i src/SCHEMA_MANAGEMENT.sql
+\i src/CTL.sql
 
 \echo
 \echo 'Introducing pgMemento to search path ...'

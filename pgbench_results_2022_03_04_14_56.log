@@ -1,0 +1,48 @@
+------------------------------------------------------------------------------
+pgbench (14.2 (Debian 14.2-1.pgdg110+1))
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 1
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 27.433 ms
+initial connection time = 13.677 ms
+tps = 364.525541 (without initial connection time)
+------------------------------------------------------------------------------
+pgbench (14.2 (Debian 14.2-1.pgdg110+1))
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 2
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 17.568 ms
+initial connection time = 11.558 ms
+tps = 569.222266 (without initial connection time)
+------------------------------------------------------------------------------
+pgbench (14.2 (Debian 14.2-1.pgdg110+1))
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 5
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 10.506 ms
+initial connection time = 10.340 ms
+tps = 951.837951 (without initial connection time)
+------------------------------------------------------------------------------
+pgbench (14.2 (Debian 14.2-1.pgdg110+1))
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 10
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 14.775 ms
+initial connection time = 11.581 ms
+tps = 676.822158 (without initial connection time)

@@ -36,9 +36,12 @@ DB=temp_db
 HOST=localhost
 PORT=5432
 
+echo "create ./results"
+mkdir -p results
+
 for s in ${SCALINGFACTORS[@]}; do
     for c in ${CLIENTS[@]}; do
-        for j in ${THREAD[@]}S; do
+        for j in ${THREADS[@]}; do
             for t in ${TRANSACTIONS[@]}; do
                 echo "create temporary test base"
                 psql -h $HOST -p $PORT -d postgres -f CREATE_TEMP_DB.sql
@@ -55,8 +58,6 @@ for s in ${SCALINGFACTORS[@]}; do
                 echo "$DB initialized"
                 echo "move back to root"
                 cd ..
-                echo "create ./results"
-                mkdir results
                 echo "testing base"
                 echo "------------------------------------------------------------------------------" >>results/pgbench_results_$EXEC_TIME.log
                 pgbench -c $c -j $j -t $t $DB >>results/pgbench_results_$EXEC_TIME.log

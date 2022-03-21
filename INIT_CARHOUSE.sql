@@ -7,4 +7,4 @@
 \i carhouse/employees.sql
 \i carhouse/sellings.sql
 
-\echo 'carhousedate loaded'
+\echo 'carhousedata loaded'

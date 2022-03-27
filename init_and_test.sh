@@ -54,7 +54,7 @@ for s in ${SCALINGFACTORS[@]}; do
                 psql -h $HOST -p $PORT -d $DB -f INSTALL_PGMEMENTO.sql
                 echo "pgMemento installed"
                 echo "initialize $DB with pgMemento"
-                psql -h $HOST -p $PORT -d $DB -f INIT_HISTORY_DB.sql
+                psql -h $HOST -p $PORT -d $DB -f INIT_PGMEMENTO.sql
                 echo "$DB initialized"
                 echo "move back to root"
                 cd ..

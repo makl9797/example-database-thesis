@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: history_db
+      POSTGRES_DB: carhouse_db
     ports:
       - 5432:5432
   pgadmin:

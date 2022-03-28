@@ -17,6 +17,7 @@ PORT=5432
 THREADS=2
 
 echo "create temporary test base"
+psql -h $HOST -p $PORT -d postgres -f DROP_TEMP_DB.sql
 psql -h $HOST -p $PORT -d postgres -f CREATE_TEMP_DB.sql
 echo "initialize pgbench tables with a scalefactor of $SCALINGFACTOR..."
 pgbench -i -s $SCALINGFACTOR $DB
@@ -34,5 +35,5 @@ echo "Running tests with $CLIENTS clients in $THREADS threads with $TRANSACTIONS
 cd ..
 pgbench -c $CLIENTS -j $THREADS -t $TRANSACTIONS $DB 
 echo "drop temporary test base"
-psql -h $HOST -p $PORT -d postgres -f DROP_TEMP_DB.sql
+#psql -h $HOST -p $PORT -d postgres -f DROP_TEMP_DB.sql
 echo "finished!"

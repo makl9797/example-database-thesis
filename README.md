@@ -1,3 +1,5 @@
+# Beschreibung
+Dieses Repository ist Teil der Bachelorthesis "Versionsverwaltung mit PostgreSQL bei kollaborativen Anwendungen". Zum Testen und Experimentieren können die Schritte in der untenstehenden Anleitung befolgt werden. Diese helfen bei der Einrichtung der Beispiele und pgAdmin 4 sowie der Durchführung von Benchmarktests mit pgBench. 
 # Anleitung
 ## 1. Docker installieren
 Docker für das passende Betriebssystem installieren.

@@ -55,7 +55,7 @@ Zusätzlich können nach der Auswahl die einzelnen Parameter ausgewählt werden 
 
 Die Ergebnisse für Auswahl 'b' werden in einer .log Datei mit Zeitstempel im Ordner 'results'  gelagert. Dieser befindet sich innerhalb des Containers. Für die Exportierung außerhalb des Containers kann folgender Befehl im normalen Terminal verwendet werden:
 
-`sudo docker cp pgcontainer:/results/ .`
+`docker cp pgcontainer:/results/ .`
 
 Dadurch wird der 'results' Ordner in das aktuelle Verzeichnis geladen.
 

@@ -15,7 +15,7 @@ https://github.com/makl9797/example-database-thesis
 ## 3. Docker Container starten
 Im lokalen Repository-Ordner ein Terminal öffnen und folgenden Befehl ausführen:
 
-`docker-compose up --build`
+`docker compose up --build`
 
 Damit werden alle benötigten Dateien heruntergeladen und die Docker Container gestartet.
 ## 4. Carhouse-Beispiel laden

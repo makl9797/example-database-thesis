@@ -16,8 +16,6 @@ case $MODE in
     read CLIENTS
     echo "Enter number of threads: "
     read THREADS
-    echo "Enter number of transactions: "
-    read TRANSACTIONS
     echo "install pgMemento? (y/n)"
     read PGMEMENTO
 
@@ -31,7 +29,7 @@ case $MODE in
     psql -h $HOST -p $PORT -d pgbench_db -f INIT_PGMEMENTO.sql
     cd ..
     fi
-    pgbench -c $CLIENTS -j $THREADS -t $TRANSACTIONS pgbench_db
+    pgbench -S -c $CLIENTS -j $THREADS -M prepared -T30 pgbench_db
     ;;
 
   b)
@@ -59,13 +57,6 @@ case $MODE in
     echo "Threads: "
     echo ${THREADS[@]}
 
-    echo "Enter number of transactions per client (finish with Ctrl+D): "
-    while read transaction; do
-        TRANSACTIONS=("${TRANSACTIONS[@]}" $transaction)
-    done
-    echo "Transactions: "
-    echo ${TRANSACTIONS[@]}
-
     EXEC_TIME=$(date +"%Y_%m_%d_%H_%M")
 
     mkdir -p results
@@ -73,20 +64,19 @@ case $MODE in
     for s in ${SCALINGFACTORS[@]}; do
         for c in ${CLIENTS[@]}; do
             for j in ${THREADS[@]}; do
-                for t in ${TRANSACTIONS[@]}; do
-                    psql -h $HOST -p $PORT -U root -d postgres -c "DROP DATABASE IF EXISTS multi_pgbench_db;"
-                    psql -h $HOST -p $PORT -U root -d postgres -c "CREATE DATABASE multi_pgbench_db;"
-                    pgbench -i -s $s multi_pgbench_db
-                    if [[ "$PGMEMENTO" == "y" ]]
-                    then
-                    cd pgMemento
-                    psql -h $HOST -p $PORT -d multi_pgbench_db -f INSTALL_PGMEMENTO.sql
-                    psql -h $HOST -p $PORT -d multi_pgbench_db -f INIT_PGMEMENTO.sql
-                    cd ..
-                    fi
-                    echo "------------------------------------------------------------------------------" >>results/pgbench_results_$EXEC_TIME.log
-                    pgbench -c $c -j $j -t $t multi_pgbench_db >>results/pgbench_results_$EXEC_TIME.log
-                done
+                psql -h $HOST -p $PORT -U root -d postgres -c "DROP DATABASE IF EXISTS multi_pgbench_db;"
+                psql -h $HOST -p $PORT -U root -d postgres -c "CREATE DATABASE multi_pgbench_db;"
+                pgbench -i -s $s multi_pgbench_db
+                if [[ "$PGMEMENTO" == "y" ]]
+                then
+                cd pgMemento
+                psql -h $HOST -p $PORT -d multi_pgbench_db -f INSTALL_PGMEMENTO.sql
+                psql -h $HOST -p $PORT -d multi_pgbench_db -f INIT_PGMEMENTO.sql
+                cd ..
+                echo "pgMemento installed">>results/pgbench_results_$EXEC_TIME.log
+                fi
+                echo "------------------------------------------------------------------------------">>results/pgbench_results_$EXEC_TIME.log
+                pgbench -S -c $c -j $j -M prepared -T30 multi_pgbench_db >>results/pgbench_results_$EXEC_TIME.log
             done
         done
     done
